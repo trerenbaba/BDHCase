@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace BDHCase.WebAPI.Dtos
+namespace BDHCase.Domain.models
 {
-    public class BordroResponseDto
+    public class CalisanView
     {
         public string Ad { get; set; }
         public string Soyad { get; set; }

@@ -1,7 +1,9 @@
-﻿using BDHCase.Persistence.Repo.Abstract;
-using BDHCase.WebAPI.Dtos;
+﻿using BDHCase.Persistence.Context;
+using BDHCase.Persistence.Repo.Abstract;
+using BDHCase.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,25 +16,24 @@ namespace BDHCase.WebAPI.Controllers
     public class CalisanlarController : ControllerBase
     {
         private readonly ICalisanRepository _calisanRepository;
-        public CalisanlarController(ICalisanRepository calisanRepository)
+        private readonly AppDbContext _appDbContext;
+        public CalisanlarController(ICalisanRepository calisanRepository, AppDbContext appDbContext)
         {
             _calisanRepository = calisanRepository;
+            _appDbContext = appDbContext;
         }
 
         [HttpPost("bordro")]
-        public IActionResult GetBordro([FromBody] BordroRequestDto model)
+        public IActionResult GetBordro([FromBody] BordroInputModel model)
         {
-            var data = _calisanRepository.GetQuery();
-            var response = _calisanRepository.GetSqlRawQuery($"exec GetBordro {model.Tc}");
-            BordroResponseDto bordro = new BordroResponseDto
-            {
-                Ad = response.Ad,
-                Soyad = response.Soyad,
-                Tc = response.TC,
-                Maas = response.Maas
-            };
+            var response = _appDbContext.Calisan.FromSqlRaw($"exec GetBordro {model.Tc}").ToList();
 
-            return Ok(bordro);
+            if (response.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(response);
+
         }
     }
 }

@@ -34,11 +34,9 @@ namespace BDHCase.Persistence.Repo.Abstract
             return _dbSet.AsQueryable();
         }
 
-        public virtual TEntity GetSqlRawQuery(string query)
+        public virtual IQueryable GetSqlRawQuery(string query)
         {
-
-
-            return _dbSet.FromSqlRaw(query).ToList().FirstOrDefault();
+            return _dbSet.FromSqlRaw(query);
 
 
             //return _dbContext.Set<TEntity>().FromSqlRaw()

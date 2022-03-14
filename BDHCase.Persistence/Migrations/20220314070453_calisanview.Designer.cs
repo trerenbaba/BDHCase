@@ -3,14 +3,16 @@ using BDHCase.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BDHCase.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220314070453_calisanview")]
+    partial class calisanview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +33,9 @@ namespace BDHCase.Persistence.Migrations
 
                     b.Property<int>("GunlukMesai")
                         .HasColumnType("int");
+
+                    b.Property<float>("Maas")
+                        .HasColumnType("real");
 
                     b.Property<int>("SaatlikMesai")
                         .HasColumnType("int");
@@ -53,47 +58,6 @@ namespace BDHCase.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Calisanlar");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "0e6ba92b-f687-4f4d-9ec1-cebaf332738a",
-                            Ad = "Eren",
-                            CalismaTipi = 1,
-                            GunlukMesai = 0,
-                            SaatlikMesai = 0,
-                            SaatlikMesaiUcreti = 0f,
-                            SabitUcret = 7500f,
-                            Soyad = "Baba",
-                            TC = "1234567890",
-                            gunlukMesaiUcreti = 0f
-                        },
-                        new
-                        {
-                            Id = "5f5e5f30-987a-4571-ab45-940f6cc04500",
-                            Ad = "Gunluk",
-                            CalismaTipi = 2,
-                            GunlukMesai = 5,
-                            SaatlikMesai = 0,
-                            SaatlikMesaiUcreti = 0f,
-                            SabitUcret = 0f,
-                            Soyad = "Ucretli",
-                            TC = "9876543210",
-                            gunlukMesaiUcreti = 200f
-                        },
-                        new
-                        {
-                            Id = "98016e58-e2aa-499f-ae79-53e4a614f4b4",
-                            Ad = "Mesai",
-                            CalismaTipi = 3,
-                            GunlukMesai = 0,
-                            SaatlikMesai = 5,
-                            SaatlikMesaiUcreti = 50f,
-                            SabitUcret = 7500f,
-                            Soyad = "Ucretli",
-                            TC = "7894561230",
-                            gunlukMesaiUcreti = 0f
-                        });
                 });
 
             modelBuilder.Entity("BDHCase.Domain.models.CalisanView", b =>

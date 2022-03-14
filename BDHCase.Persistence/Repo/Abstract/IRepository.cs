@@ -13,7 +13,7 @@ namespace BDHCase.Persistence.Repo.Abstract
         void Update(TEntity entity);
         TEntity Find(string Id);
         IQueryable<TEntity> GetQuery();
-        TEntity GetSqlRawQuery(string query);
+        IQueryable GetSqlRawQuery(string query);
         void Save();
 
     }

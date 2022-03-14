@@ -23,7 +23,6 @@ namespace BDHCase.Domain.models
         public int SaatlikMesai { get; set; } // mesaili çalışanın mesai saati
         public float SaatlikMesaiUcreti { get; set; } //mesaili çalışanın mesai saati ücreti
 
-        public float Maas { get; set; }
 
         public CalismaTipi CalismaTipi { get; set; }
 
